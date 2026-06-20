@@ -95,6 +95,8 @@
   .titlebar.term .wbtn{color:rgba(0,0,0,.55)}
   .wbtns.right{margin-left:auto}
   .win .body{flex:1;overflow:auto;position:relative}
+  .resz{position:absolute;right:0;bottom:0;width:18px;height:18px;cursor:nwse-resize;z-index:6;
+    background:linear-gradient(135deg,transparent 45%, rgba(255,255,255,.30) 45%, rgba(255,255,255,.30) 55%, transparent 55%, transparent 70%, rgba(255,255,255,.30) 70%, rgba(255,255,255,.30) 80%, transparent 80%);border-bottom-right-radius:11px}
 
   /* terminal body */
   .term-body{background:linear-gradient(180deg,var(--term-bg),var(--term-bg2));
@@ -402,7 +404,7 @@ const WM = (function(){
         <div class="wbtns"><button class="wbtn close" title="Close">✕</button><button class="wbtn min" title="Minimize">–</button><button class="wbtn max" title="Maximize">▢</button></div>
         <div class="tt"><span class="ic">${a.icon}</span>${esc(a.title)}</div>
         <div class="wbtns right" style="width:56px"></div>
-      </div><div class="body">${typeof a.html==='function'?a.html():a.html}</div>`;
+      </div><div class="body">${typeof a.html==='function'?a.html():a.html}</div><div class="resz" title="Drag to resize"></div>`;
     layer.appendChild(el);
     open[id]={el};
     el.addEventListener('mousedown',()=>focus(id));
@@ -410,6 +412,7 @@ const WM = (function(){
     el.querySelector('.min').addEventListener('click',e=>{e.stopPropagation();close(id);});
     el.querySelector('.max').addEventListener('click',e=>{e.stopPropagation();toggleMax(id);});
     dragify(el.querySelector('.titlebar'), el, id);
+    resizify(el.querySelector('.resz'), el, id);
     if(a.bars){ setTimeout(()=>el.querySelectorAll('.bar i').forEach(b=>b.style.width=b.dataset.w+'%'),120); }
     if(a.init) a.init(el);
     focus(id);
@@ -429,6 +432,15 @@ const WM = (function(){
       el.style.left=clampX(ox+e.clientX-sx, el.offsetWidth)+'px';
       el.style.top=clampY(oy+e.clientY-sy, el.offsetHeight)+'px'; });
     window.addEventListener('mouseup',()=>{ drag=false; document.body.style.userSelect=''; });
+  }
+  function resizify(handle, el, id){
+    let sx,sy,sw,sh,rz=false;
+    handle.addEventListener('mousedown',e=>{ rz=true; sx=e.clientX; sy=e.clientY; sw=el.offsetWidth; sh=el.offsetHeight; focus(id); document.body.style.userSelect='none'; e.preventDefault(); e.stopPropagation(); });
+    window.addEventListener('mousemove',e=>{ if(!rz)return;
+      const nw=Math.max(280, Math.min(sw+e.clientX-sx, window.innerWidth-el.offsetLeft-4));
+      const nh=Math.max(150, Math.min(sh+e.clientY-sy, window.innerHeight-30-el.offsetTop-4));
+      el.style.width=nw+'px'; el.style.height=nh+'px'; });
+    window.addEventListener('mouseup',()=>{ rz=false; document.body.style.userSelect=''; });
   }
   function cascade(){ let i=0; Object.keys(open).forEach(id=>{ const el=open[id].el; el.style.left=(60+i*34)+'px'; el.style.top=(50+i*30)+'px'; i++; focus(id); }); }
   function isOpen(id){return !!open[id];}
