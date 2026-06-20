@@ -10,498 +10,515 @@
 <meta property="og:description" content="15+ years in software. AI-Native Tech Lead at TELUS. People leader and hands-on engineer." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://alexkotliar.com" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0e14'/%3E%3Ctext x='14' y='68' font-family='monospace' font-size='52' fill='%2334d399'%3E%26gt;_%3C/text%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23300a24'/%3E%3Ctext x='14' y='70' font-family='monospace' font-size='54' fill='%23E95420'%3E%26gt;_%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#0a0e14; --bg-soft:#0d1320; --panel:#111a28; --panel-2:#0f1826;
-    --border:#1d2a3c; --border-soft:#16202f;
-    --text:#c9d4e3; --bright:#eef3fb; --muted:#7d8da3; --faint:#566377;
-    --accent:#34d399; --accent-d:#10b981; --blue:#38bdf8; --violet:#a78bfa;
-    --amber:#fbbf24; --pink:#f472b6;
-    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    --sans:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    --maxw:1080px;
+    --aubergine:#2c001e; --aubergine2:#3b0a2e; --purple:#77216f; --purple2:#5e2750;
+    --orange:#E95420; --orange2:#f47b53; --grey:#3b3b3b;
+    --hdr:#ebebeb; --hdr2:#dcdcdc; --hdrtext:#2b2b2b; --winborder:#c7c4c2;
+    --term-bg:#300a24; --term-bg2:#1f0617; --term-text:#eee8f0; --term-dim:#b39bb0;
+    --green:#26a269; --termgreen:#5fd7a7; --blue:#4aa3df; --yellow:#f5c211;
+    --sans:'Ubuntu',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --mono:'Ubuntu Mono',ui-monospace,Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--bg); color:var(--text); font-family:var(--sans);
-    line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden;
-  }
-  body::before{
-    content:""; position:fixed; inset:0; z-index:-2;
+  html,body{height:100%;overflow:hidden}
+  body{font-family:var(--sans);color:#fff;-webkit-font-smoothing:antialiased}
+
+  /* ===== DESKTOP / WALLPAPER ===== */
+  #desktop{position:fixed;inset:0;overflow:hidden;
     background:
-      radial-gradient(900px 500px at 80% -5%, rgba(52,211,153,.10), transparent 60%),
-      radial-gradient(800px 600px at 0% 10%, rgba(56,189,248,.08), transparent 55%),
-      radial-gradient(700px 700px at 60% 110%, rgba(167,139,250,.07), transparent 60%);
+      radial-gradient(1200px 700px at 78% 12%, rgba(233,84,32,.30), transparent 55%),
+      radial-gradient(1000px 800px at 12% 88%, rgba(119,33,111,.55), transparent 60%),
+      linear-gradient(135deg,#2c001e 0%, #4a0f38 45%, #77216f 100%);
   }
-  body::after{
-    content:""; position:fixed; inset:0; z-index:-1; opacity:.5;
-    background-image:
-      linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
-    background-size:46px 46px;
-    mask-image:radial-gradient(circle at 50% 30%,#000,transparent 85%);
+  #desktop::after{content:"";position:absolute;inset:0;opacity:.25;pointer-events:none;
+    background-image:radial-gradient(circle at 78% 16%, rgba(255,255,255,.10), transparent 9%),
+      radial-gradient(circle at 78% 16%, transparent 16%, rgba(233,84,32,.18) 17%, transparent 24%),
+      radial-gradient(circle at 78% 16%, transparent 30%, rgba(255,255,255,.06) 31%, transparent 40%);}
+
+  /* ===== TOP PANEL ===== */
+  #topbar{position:absolute;top:0;left:0;right:0;height:30px;z-index:9000;
+    background:rgba(0,0,0,.82);display:flex;align-items:center;
+    font-size:13px;color:#fff;padding:0 12px;user-select:none;backdrop-filter:blur(4px)}
+  #topbar .activities{font-weight:500;padding:3px 9px;border-radius:6px;cursor:pointer}
+  #topbar .activities:hover{background:rgba(255,255,255,.16)}
+  #clock{position:absolute;left:50%;transform:translateX(-50%);font-weight:500;cursor:default;font-variant-numeric:tabular-nums}
+  #tray{margin-left:auto;display:flex;gap:12px;align-items:center;font-size:13px}
+  #tray span{opacity:.92}
+  #tray .pw{cursor:pointer;padding:2px 5px;border-radius:5px}
+  #tray .pw:hover{background:rgba(255,255,255,.16)}
+
+  /* ===== DOCK ===== */
+  #dock{position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:8000;
+    background:rgba(40,10,32,.55);border:1px solid rgba(255,255,255,.10);
+    border-radius:16px;padding:8px 6px;display:flex;flex-direction:column;gap:8px;
+    backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.4)}
+  .dock-icon{position:relative;width:46px;height:46px;border-radius:12px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-family:var(--mono);
+    font-weight:700;font-size:17px;color:#fff;transition:transform .12s, background .12s;
+    background:linear-gradient(160deg,#5e2750,#77216f);border:1px solid rgba(255,255,255,.10)}
+  .dock-icon:hover{transform:scale(1.10) translateX(2px)}
+  .dock-icon[data-app="terminal"]{background:linear-gradient(160deg,#380b2b,#1f0617)}
+  .dock-icon[data-app="ask"]{background:linear-gradient(160deg,#E95420,#c63f12)}
+  .dock-icon[data-app="files"]{background:linear-gradient(160deg,#3a86c8,#2d6ea8)}
+  .dock-icon[data-app="contact"]{background:linear-gradient(160deg,#5b5b5b,#3b3b3b)}
+  .dock-icon .tip{position:absolute;left:56px;top:50%;transform:translateY(-50%);
+    background:rgba(0,0,0,.85);color:#fff;font-family:var(--sans);font-size:12px;
+    padding:4px 9px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:.12s}
+  .dock-icon:hover .tip{opacity:1}
+  .dock-icon .run{position:absolute;left:-4px;top:50%;transform:translateY(-50%);
+    width:4px;height:0;background:var(--orange);border-radius:3px;transition:height .15s}
+  .dock-icon.active .run{height:20px}
+  .dock-sep{height:1px;background:rgba(255,255,255,.14);margin:2px 6px}
+
+  /* ===== WINDOWS ===== */
+  #winlayer{position:absolute;inset:30px 0 0 0;z-index:100}
+  .win{position:absolute;display:flex;flex-direction:column;border-radius:11px;overflow:hidden;
+    box-shadow:0 22px 60px rgba(0,0,0,.5), 0 0 0 1px var(--winborder);
+    background:var(--term-bg);min-width:280px;min-height:160px}
+  .win.focused{box-shadow:0 30px 80px rgba(0,0,0,.62), 0 0 0 1px rgba(233,84,32,.55)}
+  .titlebar{height:38px;flex:0 0 38px;display:flex;align-items:center;gap:8px;padding:0 10px;cursor:grab;
+    background:linear-gradient(180deg,var(--hdr),var(--hdr2));color:var(--hdrtext);
+    border-bottom:1px solid #cfcccb;user-select:none}
+  .titlebar.term{background:linear-gradient(180deg,#3a1230,#2c0c22);color:#f3e9f0;border-bottom:1px solid #1f0617}
+  .titlebar:active{cursor:grabbing}
+  .titlebar .tt{font-size:13px;font-weight:500;flex:1;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .titlebar .tt .ic{opacity:.7;margin-right:6px;font-family:var(--mono)}
+  .wbtns{display:flex;gap:7px;align-items:center}
+  .wbtn{width:15px;height:15px;border-radius:50%;border:none;cursor:pointer;font-size:9px;color:rgba(0,0,0,.45);
+    display:flex;align-items:center;justify-content:center;line-height:1}
+  .wbtn.close{background:#ed6a5e} .wbtn.min{background:#f4bf4f} .wbtn.max{background:#61c554}
+  .titlebar.term .wbtn{color:rgba(0,0,0,.55)}
+  .wbtns.right{margin-left:auto}
+  .win .body{flex:1;overflow:auto;position:relative}
+
+  /* terminal body */
+  .term-body{background:linear-gradient(180deg,var(--term-bg),var(--term-bg2));
+    color:var(--term-text);font-family:var(--mono);font-size:14px;line-height:1.55;padding:14px 16px;height:100%}
+  .term-body .pr{color:var(--termgreen)} .term-body .pp{color:var(--orange2)}
+  .term-body .cmd{color:#fff;font-weight:700}
+  .term-body .dim{color:var(--term-dim)} .term-body .ok{color:var(--termgreen)}
+  .term-body .b{color:var(--blue)} .term-body .y{color:var(--yellow)} .term-body .o{color:var(--orange2)}
+  .term-body h2,.term-body h3{font-size:14px}
+  .term-body a{color:var(--termgreen);font-weight:700}
+  .nf{display:flex;gap:18px;flex-wrap:wrap}
+  .nf pre{color:var(--orange2);font-size:12px;line-height:1.15;margin:0}
+  .nf .info{font-size:13px;min-width:230px}
+  .nf .info .k{color:var(--orange2);font-weight:700}
+  .nf .info .hl{color:var(--termgreen);font-weight:700}
+  .sep{color:var(--term-dim)}
+  .job{margin:0 0 13px}
+  .job .when{color:var(--orange2);font-weight:700;font-size:12.5px}
+  .job .role{color:#fff;font-weight:700} .job .org{color:var(--term-dim);font-size:12.5px}
+  .job ul{list-style:none;margin:4px 0 0}
+  .job li{padding-left:15px;position:relative;font-size:13px;color:#e9dde6;margin:2px 0}
+  .job li::before{content:"▸";position:absolute;left:0;color:var(--termgreen)}
+  .skill{margin:0 0 9px}
+  .skill .lbl{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:3px}
+  .skill .lbl .n{color:#fff} .skill .lbl .p{color:var(--term-dim)}
+  .bar{height:7px;background:rgba(255,255,255,.08);border-radius:5px;overflow:hidden}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--orange),var(--orange2));border-radius:5px;width:0;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+  .grp{color:var(--orange2);font-weight:700;margin:10px 0 5px;font-size:13px}
+  .pills{display:flex;flex-wrap:wrap;gap:6px}
+  .pill{font-size:11.5px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);border-radius:5px;padding:3px 8px;color:#eee}
+
+  /* ask terminal */
+  .ask-log{padding:12px 14px;overflow:auto;flex:1}
+  .ask-row{margin-bottom:10px;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  .ask-q{color:#fff} .ask-q .pr{color:var(--blue)}
+  .ask-a{color:#e9dde6;margin-top:4px;white-space:pre-wrap;line-height:1.6}
+  .ask-sg{display:flex;flex-wrap:wrap;gap:7px;padding:4px 14px 10px}
+  .sg{font-size:11.5px;color:#ffd0bd;border:1px solid rgba(233,84,32,.4);background:rgba(233,84,32,.12);padding:4px 9px;border-radius:99px;cursor:pointer;font-family:var(--mono)}
+  .sg:hover{background:rgba(233,84,32,.26);color:#fff}
+  .ask-input{display:flex;gap:9px;align-items:center;padding:10px 14px;border-top:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18)}
+  .ask-input .pr{font-family:var(--mono);color:var(--termgreen)}
+  .ask-input input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-family:var(--mono);font-size:14px}
+  .ask-input input::placeholder{color:var(--term-dim)}
+
+  /* files (nautilus) */
+  .nautilus{display:flex;height:100%;background:#fafafa;color:#2b2b2b}
+  .nau-side{width:150px;flex:0 0 150px;background:#f1efee;border-right:1px solid #dcdada;padding:10px 8px;font-size:13px}
+  .nau-side .it{padding:6px 9px;border-radius:6px;color:#3b3b3b;display:flex;gap:8px;align-items:center}
+  .nau-side .it.sel{background:#E95420;color:#fff}
+  .nau-main{flex:1;padding:16px;display:flex;flex-wrap:wrap;gap:18px;align-content:flex-start}
+  .filecard{width:96px;text-align:center;cursor:pointer;border-radius:8px;padding:8px 4px}
+  .filecard:hover{background:#ececec}
+  .filecard .ic{font-size:34px;line-height:1}
+  .filecard .nm{font-size:12px;margin-top:5px;word-break:break-word;color:#2b2b2b}
+  .filecard .dl{font-size:10px;color:#E95420;font-weight:700}
+
+  /* contact body */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:16px}
+  .clink{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);
+    border-radius:10px;padding:12px;color:var(--term-text);text-decoration:none;transition:.15s}
+  .clink:hover{border-color:var(--orange);background:rgba(233,84,32,.10);transform:translateY(-2px)}
+  .clink .ic{font-family:var(--mono);color:var(--orange2);font-size:17px;width:24px;text-align:center}
+  .clink .k{font-size:10px;color:var(--term-dim);text-transform:uppercase;letter-spacing:.05em}
+  .clink .v{color:#fff;font-size:13.5px;font-weight:500}
+  .contact-foot{padding:0 16px 16px}
+  .btn{display:inline-flex;gap:8px;align-items:center;font-family:var(--mono);font-weight:700;font-size:13px;
+    padding:9px 15px;border-radius:9px;border:none;cursor:pointer;background:var(--orange);color:#fff;text-decoration:none}
+  .btn:hover{background:#c63f12}
+
+  /* boot hint toast */
+  #hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:9500;
+    background:rgba(0,0,0,.78);color:#fff;font-size:13px;padding:9px 16px;border-radius:99px;
+    border:1px solid rgba(255,255,255,.14);opacity:0;transition:opacity .5s;pointer-events:none}
+  #hint.show{opacity:1}
+  #hint b{color:var(--orange2)}
+
+  /* ===== MOBILE FALLBACK ===== */
+  #mobile{display:none}
+  @media (max-width:820px), (pointer:coarse){
+    #desktop{display:none}
+    #mobile{display:block;position:static;height:auto;min-height:100%;overflow:auto;
+      background:linear-gradient(180deg,#2c001e,#3b0a2e);color:#eee8f0;font-family:var(--sans)}
+    html,body{overflow:auto;height:auto}
   }
-  a{color:var(--accent); text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px}
-  .mono{font-family:var(--mono)}
-  .accent{color:var(--accent)} .blue{color:var(--blue)} .violet{color:var(--violet)} .amber{color:var(--amber)}
-  .muted{color:var(--muted)}
+  .m-wrap{max-width:680px;margin:0 auto;padding:22px 18px 50px}
+  .m-term{background:linear-gradient(180deg,var(--term-bg),var(--term-bg2));border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;overflow:hidden;margin-bottom:18px}
+  .m-bar{height:34px;display:flex;align-items:center;gap:7px;padding:0 12px;background:#3a1230;border-bottom:1px solid #1f0617}
+  .m-bar .d{width:11px;height:11px;border-radius:50%}.m-bar .r{background:#ed6a5e}.m-bar .y{background:#f4bf4f}.m-bar .g{background:#61c554}
+  .m-bar .t{font-family:var(--mono);font-size:12px;color:#c9b4c6;margin-left:6px}
+  .m-body{padding:15px 16px;font-family:var(--mono);font-size:14px;line-height:1.6;color:var(--term-text)}
+  .m-body .pr{color:var(--termgreen)} .m-body .o{color:var(--orange2)} .m-name{font-family:var(--sans);font-weight:700;font-size:27px;color:#fff;margin:6px 0 2px}
+  .m-role{color:var(--orange2);font-family:var(--mono);font-size:14px;margin-bottom:8px}
+  .m-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .m-chip{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:99px;padding:5px 11px}
+  .m-chip b{color:var(--orange2)}
+  .m-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 
-  /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
-    background:rgba(10,14,20,.72); border-bottom:1px solid var(--border-soft);
-  }
-  .nav-in{display:flex; align-items:center; gap:18px; height:60px; max-width:var(--maxw); margin:0 auto; padding:0 22px}
-  .brand{font-family:var(--mono); font-weight:700; color:var(--bright); font-size:15px; white-space:nowrap}
-  .brand .pr{color:var(--accent)}
-  .nav-links{display:flex; gap:6px; margin-left:auto; align-items:center}
-  .nav-links a{
-    font-family:var(--mono); font-size:13px; color:var(--muted); padding:7px 11px; border-radius:7px;
-  }
-  .nav-links a:hover{color:var(--bright); background:rgba(255,255,255,.04); text-decoration:none}
-  .btn{
-    display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:13px; font-weight:600;
-    padding:8px 14px; border-radius:8px; border:1px solid var(--accent); color:var(--accent);
-    background:rgba(52,211,153,.06); cursor:pointer; transition:.18s; white-space:nowrap;
-  }
-  .btn:hover{background:var(--accent); color:#04140d; text-decoration:none; box-shadow:0 0 22px rgba(52,211,153,.35)}
-  .nav-toggle{display:none}
-
-  /* ---------- HERO ---------- */
-  section{padding:84px 0; position:relative}
-  .hero{padding-top:64px; padding-bottom:40px}
-  .term{
-    background:linear-gradient(180deg,var(--panel),var(--panel-2));
-    border:1px solid var(--border); border-radius:14px; overflow:hidden;
-    box-shadow:0 30px 70px -30px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.03);
-  }
-  .term-bar{display:flex; align-items:center; gap:8px; padding:11px 15px; background:rgba(255,255,255,.025); border-bottom:1px solid var(--border-soft)}
-  .dot{width:12px;height:12px;border-radius:50%}
-  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
-  .term-title{font-family:var(--mono); font-size:12px; color:var(--faint); margin-left:8px}
-  .term-body{padding:26px 26px 30px; font-family:var(--mono); font-size:15px}
-  .line{margin:2px 0; white-space:pre-wrap; word-break:break-word}
-  .prompt{color:var(--accent)} .cmd{color:var(--bright)}
-  .out{color:var(--text)}
-  .name-out{font-family:var(--sans); font-weight:800; font-size:clamp(30px,6vw,52px); line-height:1.1; color:var(--bright); margin:10px 0 4px; letter-spacing:-.02em}
-  .role-out{font-family:var(--mono); color:var(--accent); font-size:clamp(14px,2.4vw,18px); margin-bottom:14px}
-  .typed{color:var(--text)}
-  .cursor{display:inline-block; width:9px; height:1.05em; background:var(--accent); margin-left:2px; vertical-align:-2px; animation:blink 1s steps(1) infinite}
-  @keyframes blink{50%{opacity:0}}
-  .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px}
-  .chip{font-family:var(--mono); font-size:12.5px; color:var(--text); background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:999px; padding:6px 13px}
-  .chip b{color:var(--accent); font-weight:700}
-  .hero-cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:24px}
-  .btn.ghost{border-color:var(--border); color:var(--text); background:transparent}
-  .btn.ghost:hover{border-color:var(--blue); color:var(--blue); background:rgba(56,189,248,.06); box-shadow:none}
-
-  /* ---------- SECTION HEADING ---------- */
-  .sec-head{font-family:var(--mono); color:var(--faint); font-size:14px; margin-bottom:8px}
-  .sec-head .accent{color:var(--accent)}
-  h2.title{font-family:var(--sans); font-weight:800; font-size:clamp(24px,4vw,34px); color:var(--bright); letter-spacing:-.02em; margin-bottom:6px}
-  .sec-sub{color:var(--muted); max-width:640px; margin-bottom:34px}
-
-  /* ---------- ASK TERMINAL ---------- */
-  #ask .term-body{padding:0; font-size:14px}
-  .ask-log{padding:22px 22px 8px; min-height:210px; max-height:340px; overflow-y:auto}
-  .ask-row{margin-bottom:14px; animation:fade .3s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  .ask-q{color:var(--bright)} .ask-q .prompt{color:var(--blue)}
-  .ask-a{color:var(--text); margin-top:6px; padding-left:2px; white-space:pre-wrap; line-height:1.7}
-  .ask-a a{font-weight:600}
-  .suggest{display:flex; flex-wrap:wrap; gap:8px; padding:4px 22px 16px}
-  .sg{font-family:var(--mono); font-size:12px; color:var(--blue); border:1px solid var(--border); background:rgba(56,189,248,.05); padding:5px 11px; border-radius:999px; cursor:pointer; transition:.15s}
-  .sg:hover{background:rgba(56,189,248,.14); color:var(--bright)}
-  .ask-input{display:flex; align-items:center; gap:10px; border-top:1px solid var(--border-soft); padding:13px 22px; background:rgba(255,255,255,.015)}
-  .ask-input .prompt{font-family:var(--mono); color:var(--accent); font-size:14px}
-  .ask-input input{flex:1; background:transparent; border:none; outline:none; color:var(--bright); font-family:var(--mono); font-size:14px}
-  .ask-input input::placeholder{color:var(--faint)}
-
-  /* ---------- TIMELINE ---------- */
-  .lens-toggle{display:inline-flex; border:1px solid var(--border); border-radius:10px; overflow:hidden; font-family:var(--mono); font-size:12.5px; margin-bottom:30px}
-  .lens-toggle button{background:transparent; color:var(--muted); border:none; padding:9px 16px; cursor:pointer; transition:.18s}
-  .lens-toggle button.active{background:rgba(52,211,153,.14); color:var(--accent)}
-  .lens-toggle button:nth-child(2).active{background:rgba(56,189,248,.14); color:var(--blue)}
-  .lens-toggle button:nth-child(3).active{background:rgba(255,255,255,.06); color:var(--bright)}
-  .tl{position:relative; padding-left:30px}
-  .tl::before{content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:linear-gradient(var(--accent),var(--blue),var(--violet))}
-  .job{position:relative; padding:0 0 30px 8px; opacity:0; transform:translateX(-12px); transition:.5s}
-  .job.in{opacity:1; transform:none}
-  .job::before{content:""; position:absolute; left:-30px; top:5px; width:14px; height:14px; border-radius:50%; background:var(--bg); border:2px solid var(--accent); box-shadow:0 0 0 4px rgba(52,211,153,.12)}
-  .job .when{font-family:var(--mono); font-size:12px; color:var(--accent)}
-  .job h3{font-family:var(--sans); font-size:18px; color:var(--bright); margin-top:3px}
-  .job .org{color:var(--muted); font-size:14px; margin-bottom:8px}
-  .job ul{list-style:none; display:flex; flex-direction:column; gap:6px}
-  .job li{position:relative; padding-left:18px; color:var(--text); font-size:14.5px}
-  .job li::before{content:"▸"; position:absolute; left:0; color:var(--faint)}
-  .job li[data-k="m"]::before{color:var(--accent)} .job li[data-k="t"]::before{color:var(--blue)}
-  .job.dim{opacity:.32; filter:grayscale(.4)}
-  .tag{display:inline-block; font-family:var(--mono); font-size:10px; padding:1px 7px; border-radius:5px; margin-left:6px; vertical-align:1px}
-  .tag.m{background:rgba(52,211,153,.14); color:var(--accent)} .tag.t{background:rgba(56,189,248,.14); color:var(--blue)}
-
-  /* ---------- SKILLS ---------- */
-  .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px}
-  .skill-card{background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:18px 18px 16px; transition:.4s}
-  .skill-card.dim{opacity:.3}
-  .skill-card h4{font-family:var(--mono); font-size:13px; color:var(--bright); margin-bottom:14px; display:flex; align-items:center; gap:8px}
-  .skill-card h4 .ic{width:8px;height:8px;border-radius:2px}
-  .bar{margin-bottom:11px}
-  .bar .lbl{display:flex; justify-content:space-between; font-size:12.5px; margin-bottom:4px}
-  .bar .lbl span:first-child{color:var(--text)} .bar .lbl span:last-child{color:var(--faint); font-family:var(--mono); font-size:11px}
-  .track{height:6px; background:rgba(255,255,255,.05); border-radius:99px; overflow:hidden}
-  .fill{height:100%; width:0; border-radius:99px; transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
-  .pillset{display:flex; flex-wrap:wrap; gap:7px}
-  .pill{font-family:var(--mono); font-size:11.5px; color:var(--text); background:rgba(255,255,255,.04); border:1px solid var(--border-soft); border-radius:6px; padding:4px 9px}
-
-  /* ---------- EDUCATION ---------- */
-  .edu-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
-  .edu{background:var(--panel); border:1px solid var(--border); border-radius:11px; padding:16px}
-  .edu .yr{font-family:var(--mono); font-size:11px; color:var(--amber)}
-  .edu h4{font-size:14.5px; color:var(--bright); margin:4px 0 2px}
-  .edu p{font-size:13px; color:var(--muted)}
-  .certs{margin-top:18px; display:flex; flex-wrap:wrap; gap:8px}
-  .certs .pill{border-color:var(--border); color:var(--text)}
-  .certs .pill b{color:var(--amber)}
-
-  /* ---------- CONTACT ---------- */
-  #contact .term-body{font-size:14px}
-  .contact-links{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:18px}
-  .clink{display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.025); border:1px solid var(--border); border-radius:10px; padding:13px 15px; transition:.18s}
-  .clink:hover{border-color:var(--accent); background:rgba(52,211,153,.06); text-decoration:none; transform:translateY(-2px)}
-  .clink .ico{font-family:var(--mono); color:var(--accent); font-size:16px; width:22px; text-align:center}
-  .clink .meta{display:flex; flex-direction:column; line-height:1.3}
-  .clink .meta .k{font-family:var(--mono); font-size:10.5px; color:var(--faint); text-transform:uppercase; letter-spacing:.05em}
-  .clink .meta .v{color:var(--bright); font-size:14px}
-
-  footer{border-top:1px solid var(--border-soft); padding:26px 0; text-align:center; color:var(--faint); font-family:var(--mono); font-size:12.5px}
-
-  .reveal{opacity:0; transform:translateY(18px); transition:.6s}
-  .reveal.in{opacity:1; transform:none}
-
-  @media (max-width:720px){
-    .nav-links a{display:none}
-    .nav-links .btn{display:inline-flex}
-    section{padding:60px 0}
-    .term-body{padding:20px 16px 24px}
-  }
-  @media (prefers-reduced-motion:reduce){
-    *{animation:none!important; transition:none!important}
-    .job,.reveal{opacity:1; transform:none}
-    .cursor{display:none}
-  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="nav-in">
-    <div class="brand">~/<span class="pr">alex</span>-kotliar <span style="color:var(--faint)">$</span></div>
-    <nav class="nav-links">
-      <a href="#ask">ask.sh</a>
-      <a href="#experience">experience</a>
-      <a href="#skills">skills</a>
-      <a href="#education">education</a>
-      <a href="#contact">contact</a>
-      <a class="btn" href="Alex_Kotliar_CV.pdf" download>↓ CV.pdf</a>
-    </nav>
-  </div>
-</header>
-
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="wrap">
-    <div class="term" id="hero-term">
-      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">alex@vancouver: ~/career</span></div>
-      <div class="term-body">
-        <div class="line"><span class="prompt">$</span> <span class="cmd">whoami</span></div>
-        <div class="name-out">Alex Kotliar</div>
-        <div class="role-out">Engineering Manager · AI-Native Delivery Leader</div>
-        <div class="line"><span class="prompt">$</span> <span class="cmd">cat summary.txt</span></div>
-        <div class="line out typed" id="typed"></div><span class="cursor" id="cursor"></span>
-        <div class="chips" id="chips" style="opacity:0">
-          <div class="chip"><b>15+</b> years in software</div>
-          <div class="chip"><b>4+</b> years leading teams</div>
-          <div class="chip"><b>80%+</b> manual work automated</div>
-          <div class="chip"><b>2</b> squads led @ TELUS</div>
-          <div class="chip">📍 Vancouver, BC</div>
-        </div>
-        <div class="hero-cta" id="cta" style="opacity:0">
-          <a class="btn" href="#ask">▸ ask my CV anything</a>
-          <a class="btn ghost" href="#experience">view experience</a>
-          <a class="btn ghost" href="Alex_Kotliar_CV.pdf" download>↓ download CV</a>
-        </div>
-      </div>
+<!-- ===================== DESKTOP ===================== -->
+<div id="desktop">
+  <div id="topbar">
+    <div class="activities" onclick="WM.cascade()">Activities</div>
+    <div id="clock">—</div>
+    <div id="tray">
+      <span title="Network">▮▮▮</span>
+      <span title="Volume">🔊</span>
+      <span title="Battery">100%</span>
+      <span class="pw" title="Download CV" onclick="dl()">⏻</span>
     </div>
   </div>
-</section>
 
-<!-- ===== ASK MY CV ===== -->
-<section id="ask">
-  <div class="wrap">
-    <div class="sec-head"><span class="accent">//</span> ask.sh — interrogate my CV</div>
-    <h2 class="title">Ask me anything</h2>
-    <p class="sec-sub">An interactive terminal wired to my career. Type a question or tap a suggestion — answers come straight from my experience. (Runs entirely in your browser, no servers.)</p>
-    <div class="term">
-      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">ask.sh — alex-kotliar/cv</span></div>
-      <div class="term-body">
-        <div class="ask-log" id="askLog"></div>
-        <div class="suggest" id="suggest"></div>
-        <form class="ask-input" id="askForm" autocomplete="off">
-          <span class="prompt">❯</span>
-          <input id="askInput" placeholder="e.g. what's your management experience?" aria-label="Ask a question" />
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+  <div id="dock"></div>
+  <div id="winlayer"></div>
+  <div id="hint">Tip: drag windows by their title bar · click the <b>dock</b> on the left to open apps</div>
+</div>
 
-<!-- ===== EXPERIENCE ===== -->
-<section id="experience">
-  <div class="wrap">
-    <div class="sec-head"><span class="accent">//</span> git log --career</div>
-    <h2 class="title">Experience</h2>
-    <p class="sec-sub">15+ years building software — and the last 4+ leading the teams that build it. Toggle the lens to see it through a manager's or an engineer's eyes.</p>
-    <div class="lens-toggle" id="lens">
-      <button data-lens="all" class="active">⊞ Full view</button>
-      <button data-lens="m">◆ Manager lens</button>
-      <button data-lens="t">◆ Engineer lens</button>
-    </div>
-    <div class="tl" id="timeline"></div>
-  </div>
-</section>
-
-<!-- ===== SKILLS ===== -->
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-head"><span class="accent">//</span> skills.json</div>
-    <h2 class="title">Skills &amp; stack</h2>
-    <p class="sec-sub">A leader who still reads the pull request. The lens above also filters this section — leadership &amp; delivery on one side, the technical stack on the other.</p>
-    <div class="skills-grid" id="skillsGrid"></div>
-  </div>
-</section>
-
-<!-- ===== EDUCATION ===== -->
-<section id="education">
-  <div class="wrap">
-    <div class="sec-head"><span class="accent">//</span> education &amp; certifications</div>
-    <h2 class="title">Always shipping, always learning</h2>
-    <div class="edu-grid" id="eduGrid"></div>
-    <div class="certs" id="certs"></div>
-  </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<section id="contact">
-  <div class="wrap">
-    <div class="sec-head"><span class="accent">//</span> contact.sh</div>
-    <h2 class="title">Let's talk</h2>
-    <p class="sec-sub">Open to engineering management and senior technical leadership roles. The fastest way to reach me:</p>
-    <div class="term">
-      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">contact.sh</span></div>
-      <div class="term-body">
-        <div class="line"><span class="prompt">$</span> <span class="cmd">./contact.sh --connect</span></div>
-        <div class="contact-links">
-          <a class="clink" href="mailto:kotliar.alex@gmail.com"><span class="ico">@</span><span class="meta"><span class="k">email</span><span class="v">kotliar.alex@gmail.com</span></span></a>
-          <a class="clink" href="tel:+16476420105"><span class="ico">☎</span><span class="meta"><span class="k">phone</span><span class="v">647 642 0105</span></span></a>
-          <a class="clink" href="https://www.linkedin.com/in/alexy-kotliar" target="_blank" rel="noopener"><span class="ico">in</span><span class="meta"><span class="k">linkedin</span><span class="v">/in/alexy-kotliar</span></span></a>
-          <a class="clink" href="https://github.com/AlexyKotliar" target="_blank" rel="noopener"><span class="ico">{}</span><span class="meta"><span class="k">github</span><span class="v">@AlexyKotliar</span></span></a>
-        </div>
-        <div class="hero-cta" style="margin-top:20px">
-          <a class="btn" href="Alex_Kotliar_CV.pdf" download>↓ download full CV (PDF)</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">$ built with HTML, CSS &amp; vanilla JS — no frameworks, no trackers · © <span id="yr"></span> Alex Kotliar</div>
-</footer>
+<!-- ===================== MOBILE FALLBACK ===================== -->
+<div id="mobile"><div class="m-wrap" id="mwrap"></div></div>
 
 <script>
 /* ============ DATA ============ */
+const PROFILE = {
+  name:"Alex Kotliar", role:"Engineering Manager · AI-Native Delivery Leader",
+  loc:"Vancouver, BC", email:"kotliar.alex@gmail.com", phone:"647 642 0105",
+  linkedin:"https://www.linkedin.com/in/alexy-kotliar", github:"https://github.com/AlexyKotliar"
+};
 const SUMMARY = "Hands-on Engineering Manager and AI-native delivery leader with 15+ years in software, now AI-Native Tech Lead at TELUS — embedding AI tooling across the engineering lifecycle while owning platform reliability, mentoring engineers, and shipping web, mobile & cloud platforms.";
 
 const JOBS = [
   { when:"Jun 2026 — Present", role:"AI-Native Tech Lead", org:"TELUS Health · TELUS, Toronto", points:[
-    ["m","Set the technical direction for AI-driven engineering across the squads on a large-scale platform."],
-    ["t","Embed AI tooling — Claude Code, AI agents, MCP integrations — across the dev lifecycle to accelerate delivery and code quality."],
-    ["m","Uphold reliability and code-review standards while raising the team's automation baseline."]
-  ]},
+    "Set the technical direction for AI-driven engineering across the squads on a large-scale platform.",
+    "Embed AI tooling — Claude Code, AI agents, MCP integrations — across the dev lifecycle to accelerate delivery & quality.",
+    "Uphold reliability and code-review standards while raising the team's automation baseline."]},
   { when:"Jan 2024 — Jun 2026", role:"Software Delivery Manager", org:"TELUS Health · TELUS / TELUS Digital, Toronto", points:[
-    ["m","Led two cross-functional engineering squads delivering a microservices platform."],
-    ["t","Platform spanned Java, Python & Ruby with customer-facing React & React Native apps on AWS (CI/CD, Docker, Kubernetes)."],
-    ["m","Owned roadmap execution — coordinated deployments, releases & fixes; estimated effort and tracked risk via Scrum."],
-    ["m","Mentored engineers through coaching & feedback; interviewed front- and back-end candidates."]
-  ]},
+    "Led two cross-functional engineering squads delivering a microservices platform (Java, Python, Ruby).",
+    "Customer-facing React & React Native apps on AWS (CI/CD, Docker, Kubernetes).",
+    "Owned roadmap execution; estimated effort and tracked risk via Scrum; mentored & interviewed engineers."]},
   { when:"Nov 2021 — Dec 2023", role:"Senior Full-Stack Developer & Squad Lead", org:"TELUS International Digital Solutions, Toronto", points:[
-    ["t","Led a squad building an internal portal on a micro-frontend architecture (React.js, Node.js, Jest)."],
-    ["m","Established code-review standards & quality gates — catching defects pre-production and cutting tech debt."],
-    ["t","Optimized database queries, improving application response times and UX."],
-    ["m","Planned & monitored sprints; tracked tickets in Jira and GitHub; onboarded developers."]
-  ]},
+    "Led a squad building an internal portal on a micro-frontend architecture (React.js, Node.js, Jest).",
+    "Established code-review standards & quality gates; cut tech debt; optimized DB queries.",
+    "Planned sprints; tracked tickets in Jira/GitHub; onboarded developers."]},
   { when:"Feb 2020 — Nov 2021", role:"Full-Stack Developer & IT Manager (Contract)", org:"NVG Communication / TT Mercury Diamant", points:[
-    ["t","Built internal web platforms (company directory, knowledge base) with JavaScript, Node.js, Express & Python."],
-    ["t","Owned the full lifecycle — design, build, deploy, monitor — with unit/integration testing and code reviews."],
-    ["m","Managed IT systems & support for a 300-user org across Linux and Windows Server."]
-  ]},
+    "Built internal web platforms with JavaScript, Node.js, Express & Python.",
+    "Owned full lifecycle — design, build, deploy, monitor — with testing & code reviews.",
+    "Managed IT systems & support for a 300-user org across Linux and Windows Server."]},
   { when:"Sep 2016 — Present", role:"Freelance Full-Stack Developer", org:"Self-employed", points:[
-    ["t","Design & build B2C web apps front-to-back (Python, Node.js, JS, HTML/CSS) on AWS EC2 & Heroku."],
-    ["t","Delivered client features like a web price-calculator service with responsive, accessible UX."]
-  ]},
+    "Design & build B2C web apps front-to-back (Python, Node.js, JS) on AWS EC2 & Heroku.",
+    "Delivered client features like a web price-calculator service with responsive, accessible UX."]},
   { when:"Jul 2010 — Aug 2016", role:"Manager — E-commerce & Internal Software", org:"Wellcom Technologies, Holon", points:[
-    ["m","Led a team designing & maintaining an e-commerce platform and internal tooling (PHP, JS, MySQL)."],
-    ["t","Built automation that cut manual work by 80%+ and nearly eliminated human error in the sales process."]
-  ]}
+    "Led a team maintaining an e-commerce platform & internal tooling (PHP, JS, MySQL).",
+    "Built automation that cut manual work by 80%+ and nearly eliminated human error in sales."]}
 ];
 
 const SKILLS = [
-  { cat:"AI & Automation", k:"t", color:"var(--violet)", bars:[["AI-native delivery",95],["AI agents & MCP",90],["Claude Code / AI-assisted dev",92]] },
-  { cat:"Leadership", k:"m", color:"var(--accent)", bars:[["Team leadership & mentoring",95],["Hiring & onboarding",88],["Stakeholder management",90]] },
-  { cat:"Delivery", k:"m", color:"var(--accent)", bars:[["Agile / Scrum",92],["Roadmap execution",90],["Code reviews & quality gates",93]] },
-  { cat:"Platform & Ops", k:"m", color:"var(--accent)", bars:[["Production support & reliability",88],["Monitoring",85],["Full-lifecycle ownership",90]] },
-  { cat:"Architecture", k:"t", color:"var(--blue)", bars:[["Microservices & micro-frontends",90],["REST APIs / integration",90],["MVC · SPA",88]] },
-  { cat:"Languages", k:"t", color:"var(--blue)", pills:["JavaScript","Node.js","Python","Java","PHP","SQL"] },
-  { cat:"Frameworks", k:"t", color:"var(--blue)", pills:["React","React Native","Express","Spring Boot","Django","Flask","jQuery"] },
-  { cat:"Cloud & DevOps", k:"t", color:"var(--blue)", pills:["AWS (EC2, S3)","Azure","Docker","Kubernetes","CI/CD","Git/GitHub"] },
-  { cat:"Data & Testing", k:"t", color:"var(--blue)", pills:["MySQL","MongoDB","NoSQL","ORM","Jest","Cypress","JUnit"] }
+  { cat:"AI & Automation", bars:[["AI-native delivery",95],["AI agents & MCP",90],["Claude Code / AI-assisted dev",92]] },
+  { cat:"Leadership", bars:[["Team leadership & mentoring",95],["Hiring & onboarding",88],["Stakeholder management",90]] },
+  { cat:"Delivery", bars:[["Agile / Scrum",92],["Roadmap execution",90],["Code reviews & quality gates",93]] },
+  { cat:"Architecture", bars:[["Microservices & micro-frontends",90],["REST APIs / integration",90],["MVC · SPA",88]] }
 ];
-
+const STACK = {
+  "Languages":["JavaScript","Node.js","Python","Java","PHP","SQL"],
+  "Frameworks":["React","React Native","Express","Spring Boot","Django","Flask"],
+  "Cloud & DevOps":["AWS (EC2,S3)","Azure","Docker","Kubernetes","CI/CD","Git/GitHub"],
+  "Data & Testing":["MySQL","MongoDB","NoSQL","ORM","Jest","Cypress","JUnit"]
+};
 const EDU = [
-  { yr:"2021", t:"Grad. Cert., Full-Stack Web Development", s:"University of Toronto" },
-  { yr:"2019", t:"Prof. Cert., Python Programming", s:"Georgia Tech" },
-  { yr:"2021", t:"Prof. Cert., CS for Web Programming", s:"Harvard University" },
-  { yr:"Jan 2025", t:"Advanced Java Development", s:"McMaster University" },
-  { yr:"2020", t:"CS50 Web Programming (Python & JS)", s:"Harvard University" },
-  { yr:"In progress", t:"Computer Science", s:"Thompson Rivers University" }
+  ["2021","Grad. Cert., Full-Stack Web Development","University of Toronto"],
+  ["2019","Prof. Cert., Python Programming","Georgia Tech"],
+  ["2021","Prof. Cert., CS for Web Programming","Harvard University"],
+  ["Jan 2025","Advanced Java Development","McMaster University"],
+  ["2020","CS50 Web Programming (Python & JS)","Harvard University"],
+  ["In progress","Computer Science","Thompson Rivers University"]
 ];
 const CERTS = ["AWS Certified Cloud Practitioner (2024)","Anthropic — Claude / AI development","Google Prompting Essentials","Google AI Essentials"];
 
-/* ============ ASK-MY-CV KNOWLEDGE BASE ============ */
 const KB = [
-  { keys:["hi","hello","hey","start"], a:"Hi! I'm Alex's CV, in terminal form. Ask me about his experience, leadership, technical stack, AI work, education, or how to get in touch. Try a suggestion below 👇" },
-  { keys:["current","now","today","present","doing","role","title","job"], a:"Right now Alex is the AI-Native Tech Lead at TELUS Health (since Jun 2026) — setting the technical direction for AI-driven engineering across the squads and embedding tools like Claude Code, AI agents and MCP integrations into the development lifecycle." },
-  { keys:["experience","years","background","career","how long","senior"], a:"15+ years in software, with 4+ years leading cross-functional engineering teams. The path runs from hands-on full-stack dev → squad lead → delivery manager → AI-Native Tech Lead — so the leadership is grounded in real engineering." },
-  { keys:["management","manager","lead","leadership","people","mentor","team","coach"], a:"Alex has led two cross-functional squads at TELUS, owns delivery roadmaps, runs Scrum, and mentors engineers through coaching, feedback and hiring. He set code-review standards and quality gates that catch defects before production. A leader who still reads the pull request." },
-  { keys:["technical","tech","stack","code","coding","develop","engineer","hands-on","hands on","programming"], a:"Very hands-on. Core stack: JavaScript/Node.js, Python, Java (+ PHP, SQL). Frameworks: React, React Native, Express, Spring Boot, Django, Flask. Architecture: microservices & micro-frontends, REST APIs. Cloud/DevOps: AWS, Azure, Docker, Kubernetes, CI/CD." },
-  { keys:["ai","artificial","claude","mcp","agent","automation","automate","llm"], a:"AI is Alex's current focus. As AI-Native Tech Lead he embeds Claude Code, AI agents and MCP integrations across the engineering lifecycle. Earlier he built automation that cut manual work by 80%+. He's also completed Anthropic, Google AI and prompting courses." },
-  { keys:["languages","language","python","java","javascript","node"], a:"Languages: JavaScript, Node.js, Python, Java, PHP and SQL. Frameworks across all of them — React/React Native & Express on the JS side, Spring Boot for Java, Django/Flask for Python." },
-  { keys:["cloud","aws","azure","docker","kubernetes","devops","ci","infra"], a:"Cloud & DevOps: AWS (EC2, S3) and Azure, containerized with Docker & Kubernetes, shipped through CI/CD pipelines and Git/GitHub. He's an AWS Certified Cloud Practitioner (2024)." },
-  { keys:["telus"], a:"Alex has been at TELUS since 2021 across three roles: Senior Full-Stack Developer & Squad Lead (TELUS International), Software Delivery Manager (TELUS Health), and now AI-Native Tech Lead — all on the same large-scale microservices platform." },
-  { keys:["education","study","studied","degree","school","university","learn"], a:"Continuous learner: Full-Stack Web Dev cert from U of Toronto, Python from Georgia Tech, Harvard CS for Web Programming + CS50, Advanced Java at McMaster, and CS at Thompson Rivers (in progress). Plus AWS, Anthropic and Google AI certifications." },
-  { keys:["certification","certificate","certs","cert","aws certified"], a:"Certifications: AWS Certified Cloud Practitioner (2024), Anthropic Claude/AI development courses, Google Prompting Essentials, and Google AI Essentials." },
-  { keys:["automation","80","efficiency","reduce","manual"], a:"At Wellcom Technologies, Alex built automation that cut manual work by 80%+ and nearly eliminated human error in the sales process — a theme that continues today through his AI-native engineering work." },
-  { keys:["contact","email","reach","hire","connect","phone","talk","available","get in touch"], a:"Easiest ways to reach Alex:\n• email — kotliar.alex@gmail.com\n• phone — 647 642 0105\n• linkedin — /in/alexy-kotliar\n• github — @AlexyKotliar\nHe's open to engineering management and senior technical leadership roles." },
-  { keys:["why","hire you","best","strength","stand out","unique","sell"], a:"The pitch: Alex is rare in being both a credible people leader and a hands-on engineer. He can set technical direction, run the delivery, mentor the team, AND go deep on the code and the AI tooling. 15+ years of range, with a track record of automation and reliability." },
-  { keys:["cv","resume","download","pdf","document"], a:"You can download the full PDF CV from the button in the top-right nav, or right here: <a href='Alex_Kotliar_CV.pdf' download>↓ Alex_Kotliar_CV.pdf</a>" },
-  { keys:["location","where","vancouver","toronto","based","remote","relocate"], a:"Alex is based in Vancouver, BC, Canada." },
-  { keys:["freelance","side","b2c","client"], a:"Alongside his roles, Alex has freelanced since 2016 — building B2C web apps front-to-back (Python, Node.js, JS) on AWS EC2 and Heroku, including a web price-calculator service." }
+  { keys:["hi","hello","hey","start"], a:"Hi! I'm Alex's CV, in a terminal. Ask about experience, leadership, technical stack, AI work, education, or contact — or tap a suggestion below 👇" },
+  { keys:["current","now","today","present","role","title","job","doing"], a:"Right now Alex is AI-Native Tech Lead at TELUS Health (since Jun 2026) — setting technical direction for AI-driven engineering and embedding Claude Code, AI agents and MCP across the dev lifecycle." },
+  { keys:["experience","years","background","career","how long","senior"], a:"15+ years in software, 4+ leading cross-functional teams. The path: hands-on full-stack dev → squad lead → delivery manager → AI-Native Tech Lead — leadership grounded in real engineering." },
+  { keys:["management","manager","lead","leadership","people","mentor","team","coach"], a:"Led two cross-functional squads at TELUS, owns delivery roadmaps, runs Scrum, mentors & hires engineers, and set code-review standards/quality gates. A leader who still reads the pull request." },
+  { keys:["technical","tech","stack","code","coding","develop","engineer","hands-on","hands on","programming"], a:"Very hands-on. Core stack: JavaScript/Node.js, Python, Java (+PHP, SQL). Frameworks: React, React Native, Express, Spring Boot, Django, Flask. Microservices & micro-frontends. Cloud: AWS, Azure, Docker, Kubernetes, CI/CD." },
+  { keys:["ai","artificial","claude","mcp","agent","automation","automate","llm"], a:"AI is Alex's current focus — embedding Claude Code, AI agents and MCP across the engineering lifecycle. Earlier he built automation cutting manual work by 80%+. Completed Anthropic & Google AI courses." },
+  { keys:["cloud","aws","azure","docker","kubernetes","devops","ci","infra"], a:"Cloud & DevOps: AWS (EC2,S3) and Azure, Docker & Kubernetes, CI/CD pipelines, Git/GitHub. AWS Certified Cloud Practitioner (2024)." },
+  { keys:["telus"], a:"At TELUS since 2021 across three roles: Senior Full-Stack Dev & Squad Lead (TELUS International), Software Delivery Manager (TELUS Health), now AI-Native Tech Lead — all on the same large-scale microservices platform." },
+  { keys:["education","study","studied","degree","school","university","learn","certification","cert"], a:"Full-Stack Web Dev cert (U of Toronto), Python (Georgia Tech, 2019), Harvard CS for Web + CS50, Advanced Java (McMaster, Jan 2025), CS at Thompson Rivers (in progress). Plus AWS, Anthropic & Google AI certs." },
+  { keys:["contact","email","reach","hire","connect","phone","talk","available"], a:"Reach Alex:\n• email — kotliar.alex@gmail.com\n• phone — 647 642 0105\n• linkedin — /in/alexy-kotliar\n• github — @AlexyKotliar\nOpen to engineering management & senior technical leadership roles." },
+  { keys:["why","hire you","best","strength","stand out","unique","sell"], a:"The pitch: Alex is both a credible people leader AND a hands-on engineer — sets technical direction, runs delivery, mentors the team, and goes deep on the code and AI tooling. 15+ years of range." },
+  { keys:["cv","resume","download","pdf","document"], a:"Grab the full PDF from the Files app in the dock, or here: <a href='Alex_Kotliar_CV.pdf' download>↓ Alex_Kotliar_CV.pdf</a>" },
+  { keys:["location","where","vancouver","based","remote","relocate"], a:"Alex is based in Vancouver, BC, Canada." }
 ];
-const SUGGESTIONS = ["What's your management experience?","Tell me about your AI work","What's your technical stack?","Why should we hire you?","How do I contact you?","Download your CV"];
+const SUGGEST = ["Management experience?","Your AI work","Technical stack?","Why hire you?","Contact","Download CV"];
 
-/* ============ RENDER ============ */
-const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-document.getElementById('yr').textContent=new Date().getFullYear();
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-/* hero typing */
-(function(){
-  const el=$('#typed'); let i=0; const speed=18;
-  function step(){
-    if(i<=SUMMARY.length){ el.textContent=SUMMARY.slice(0,i); i++; setTimeout(step,speed); }
-    else{ $('#cursor').style.display='none'; fadeIn($('#chips')); setTimeout(()=>fadeIn($('#cta')),180); }
+/* ============ APP CONTENT BUILDERS ============ */
+function aboutHTML(){
+  const logo = "       _____\n   ___/     \\___\n  /   o     o   \\\n |    \\___/    |\n  \\___________/\n   ubuntu@alex";
+  return `<div class="term-body">
+    <div><span class="pr">alex@alexkotliar</span>:<span class="b">~</span>$ <span class="cmd">neofetch</span></div>
+    <div class="nf" style="margin-top:8px">
+      <pre>${esc(logo)}</pre>
+      <div class="info">
+        <div><span class="hl">alex</span>@<span class="hl">alexkotliar</span></div>
+        <div class="sep">------------------------</div>
+        <div><span class="k">OS</span>: AlexOS (Ubuntu-flavored)</div>
+        <div><span class="k">Role</span>: Engineering Manager · AI-Native Tech Lead</div>
+        <div><span class="k">Host</span>: TELUS Health</div>
+        <div><span class="k">Kernel</span>: ai-native-6.2</div>
+        <div><span class="k">Uptime</span>: 15+ years in software</div>
+        <div><span class="k">Leading</span>: 4+ yrs cross-functional squads</div>
+        <div><span class="k">Shell</span>: leadership + hands-on code</div>
+        <div><span class="k">Stack</span>: React · Node · Python · Java · AWS</div>
+        <div><span class="k">Location</span>: Vancouver, BC</div>
+        <div><span class="k">Automation</span>: 80%+ manual work removed</div>
+      </div>
+    </div>
+    <div style="margin-top:12px"><span class="pr">alex@alexkotliar</span>:<span class="b">~</span>$ <span class="cmd">cat summary.txt</span></div>
+    <div style="margin-top:4px">${esc(SUMMARY)}</div>
+    <div style="margin-top:10px"><span class="pr">alex@alexkotliar</span>:<span class="b">~</span>$ <span style="background:var(--termgreen);color:#300a24">&nbsp;</span></div>
+  </div>`;
+}
+function expHTML(){
+  let s = `<div class="term-body"><div><span class="pr">alex@alexkotliar</span>:<span class="b">~</span>$ <span class="cmd">cat experience.log</span></div><div style="margin-top:10px">`;
+  JOBS.forEach(j=>{ s+=`<div class="job"><div class="when">${esc(j.when)}</div><div class="role">${esc(j.role)}</div><div class="org">${esc(j.org)}</div><ul>${j.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>`; });
+  return s+`</div></div>`;
+}
+function skillsHTML(){
+  let s = `<div class="term-body"><div><span class="pr">alex@alexkotliar</span>:<span class="b">~</span>$ <span class="cmd">./skills --report</span></div><div style="margin-top:10px">`;
+  SKILLS.forEach(g=>{ s+=`<div class="grp">▍ ${esc(g.cat)}</div>`; g.bars.forEach(b=>{ s+=`<div class="skill"><div class="lbl"><span class="n">${esc(b[0])}</span><span class="p">${b[1]}%</span></div><div class="bar"><i data-w="${b[1]}"></i></div></div>`; }); });
+  Object.keys(STACK).forEach(k=>{ s+=`<div class="grp">▍ ${esc(k)}</div><div class="pills">${STACK[k].map(p=>`<span class="pill">${esc(p)}</span>`).join("")}</div>`; });
+  s+=`<div class="grp">▍ Education &amp; Certifications</div>`;
+  EDU.forEach(e=>{ s+=`<div style="font-size:13px;margin:2px 0"><span class="o">${esc(e[0])}</span> · ${esc(e[1])} <span class="dim">— ${esc(e[2])}</span></div>`; });
+  s+=`<div class="pills" style="margin-top:8px">${CERTS.map(c=>`<span class="pill">✓ ${esc(c)}</span>`).join("")}</div>`;
+  return s+`</div></div>`;
+}
+function filesHTML(){
+  return `<div class="nautilus">
+    <div class="nau-side"><div class="it sel">🏠 Home</div><div class="it">📄 Documents</div><div class="it">⬇ Downloads</div><div class="it">⭐ Starred</div></div>
+    <div class="nau-main">
+      <div class="filecard" onclick="dl()"><div class="ic">📕</div><div class="nm">Alex_Kotliar_CV.pdf</div><div class="dl">download ↓</div></div>
+      <div class="filecard" onclick="WM.open('exp')"><div class="ic">📜</div><div class="nm">experience.log</div></div>
+      <div class="filecard" onclick="WM.open('skills')"><div class="ic">⚙️</div><div class="nm">skills.json</div></div>
+      <div class="filecard" onclick="WM.open('about')"><div class="ic">🧑‍💻</div><div class="nm">about.me</div></div>
+      <div class="filecard" onclick="WM.open('ask')"><div class="ic">💬</div><div class="nm">ask.sh</div></div>
+      <div class="filecard" onclick="WM.open('contact')"><div class="ic">✉️</div><div class="nm">contact.vcf</div></div>
+    </div></div>`;
+}
+function contactHTML(){
+  return `<div class="term-body" style="padding:0;display:flex;flex-direction:column;height:100%">
+    <div class="contact-grid">
+      <a class="clink" href="mailto:${PROFILE.email}"><span class="ic">@</span><span><span class="k">email</span><br><span class="v">${PROFILE.email}</span></span></a>
+      <a class="clink" href="tel:+16476420105"><span class="ic">☎</span><span><span class="k">phone</span><br><span class="v">${PROFILE.phone}</span></span></a>
+      <a class="clink" href="${PROFILE.linkedin}" target="_blank" rel="noopener"><span class="ic">in</span><span><span class="k">linkedin</span><br><span class="v">/in/alexy-kotliar</span></span></a>
+      <a class="clink" href="${PROFILE.github}" target="_blank" rel="noopener"><span class="ic">{}</span><span><span class="k">github</span><br><span class="v">@AlexyKotliar</span></span></a>
+    </div>
+    <div class="contact-foot"><a class="btn" href="Alex_Kotliar_CV.pdf" download>↓ Download full CV (PDF)</a>
+      <div style="margin-top:10px;color:var(--term-dim);font-size:12.5px">Open to engineering management & senior technical leadership roles.</div></div>
+  </div>`;
+}
+function askHTML(){
+  return `<div style="display:flex;flex-direction:column;height:100%;background:linear-gradient(180deg,var(--term-bg),var(--term-bg2))">
+    <div class="ask-log" id="askLog"></div>
+    <div class="ask-sg" id="askSg"></div>
+    <form class="ask-input" id="askForm" autocomplete="off"><span class="pr">❯</span>
+      <input id="askInput" placeholder="ask my CV anything…" aria-label="Ask a question" /></form>
+  </div>`;
+}
+
+/* ============ APPS ============ */
+const APPS = {
+  about:   {title:"alex@alexkotliar: ~", icon:">_", term:true, w:560,h:430,x:70,y:50, html:aboutHTML},
+  exp:     {title:"experience.log — Terminal", icon:"≣", term:true, w:560,h:440,x:660,y:70, html:expHTML, bars:true},
+  skills:  {title:"skills.json — Terminal", icon:"⚙", term:true, w:540,h:460,x:360,y:150, html:skillsHTML, bars:true},
+  ask:     {title:"ask.sh — interrogate my CV", icon:"?", term:true, w:560,h:340,x:120,y:330, html:askHTML, init:initAsk},
+  files:   {title:"Files", icon:"▤", term:false, w:560,h:360,x:300,y:120, html:filesHTML},
+  contact: {title:"Contact", icon:"✉", term:false, w:520,h:330,x:380,y:180, html:contactHTML}
+};
+const DOCK = [
+  ["about","About"],["exp","Experience"],["skills","Skills"],["ask","ask.sh"],
+  ["files","Files"],["contact","Contact"],["sep"],["github","GitHub"],["linkedin","LinkedIn"],["cv","Download CV"]
+];
+
+/* ============ WINDOW MANAGER ============ */
+const WM = (function(){
+  const layer=document.getElementById('winlayer');
+  let z=100; const open={};
+  function clampX(x,w){return Math.max(4,Math.min(x, window.innerWidth-w-4));}
+  function clampY(y,h){return Math.max(4,Math.min(y, window.innerHeight-30-h-4));}
+  function focus(id){ const w=open[id]; if(!w)return; z++; w.el.style.zIndex=z;
+    document.querySelectorAll('.win').forEach(e=>e.classList.remove('focused')); w.el.classList.add('focused'); updateDock(); }
+  function openApp(id){
+    if(open[id]){ focus(id); return; }
+    const a=APPS[id]; if(!a) return;
+    const el=document.createElement('div'); el.className='win';
+    const w=Math.min(a.w, window.innerWidth-20), h=Math.min(a.h, window.innerHeight-60);
+    el.style.width=w+'px'; el.style.height=h+'px';
+    el.style.left=clampX(a.x,w)+'px'; el.style.top=clampY(a.y,h)+'px';
+    el.innerHTML=`<div class="titlebar ${a.term?'term':''}">
+        <div class="wbtns"><button class="wbtn close" title="Close">✕</button><button class="wbtn min" title="Minimize">–</button><button class="wbtn max" title="Maximize">▢</button></div>
+        <div class="tt"><span class="ic">${a.icon}</span>${esc(a.title)}</div>
+        <div class="wbtns right" style="width:56px"></div>
+      </div><div class="body">${typeof a.html==='function'?a.html():a.html}</div>`;
+    layer.appendChild(el);
+    open[id]={el};
+    el.addEventListener('mousedown',()=>focus(id));
+    el.querySelector('.close').addEventListener('click',e=>{e.stopPropagation();close(id);});
+    el.querySelector('.min').addEventListener('click',e=>{e.stopPropagation();close(id);});
+    el.querySelector('.max').addEventListener('click',e=>{e.stopPropagation();toggleMax(id);});
+    dragify(el.querySelector('.titlebar'), el, id);
+    if(a.bars){ setTimeout(()=>el.querySelectorAll('.bar i').forEach(b=>b.style.width=b.dataset.w+'%'),120); }
+    if(a.init) a.init(el);
+    focus(id);
   }
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){ el.textContent=SUMMARY; $('#cursor').style.display='none'; $('#chips').style.opacity=1; $('#cta').style.opacity=1; }
-  else setTimeout(step,650);
-  function fadeIn(n){ n.style.transition='opacity .6s ease, transform .6s ease'; n.style.transform='translateY(8px)'; n.style.opacity=0; requestAnimationFrame(()=>{n.style.opacity=1;n.style.transform='none';}); }
+  function toggleMax(id){ const w=open[id]; if(!w)return; const el=w.el;
+    if(w.prev){ Object.assign(el.style,w.prev); w.prev=null; }
+    else{ w.prev={left:el.style.left,top:el.style.top,width:el.style.width,height:el.style.height};
+      el.style.left='6px'; el.style.top='6px'; el.style.width=(window.innerWidth-16)+'px'; el.style.height=(window.innerHeight-30-12)+'px'; }
+  }
+  function close(id){ const w=open[id]; if(!w)return; w.el.remove(); delete open[id]; updateDock(); }
+  function dragify(handle, el, id){
+    let sx,sy,ox,oy,drag=false;
+    handle.addEventListener('mousedown',e=>{ if(e.target.classList.contains('wbtn'))return;
+      drag=true; sx=e.clientX; sy=e.clientY; ox=el.offsetLeft; oy=el.offsetTop; focus(id);
+      document.body.style.userSelect='none'; e.preventDefault(); });
+    window.addEventListener('mousemove',e=>{ if(!drag)return;
+      el.style.left=clampX(ox+e.clientX-sx, el.offsetWidth)+'px';
+      el.style.top=clampY(oy+e.clientY-sy, el.offsetHeight)+'px'; });
+    window.addEventListener('mouseup',()=>{ drag=false; document.body.style.userSelect=''; });
+  }
+  function cascade(){ let i=0; Object.keys(open).forEach(id=>{ const el=open[id].el; el.style.left=(60+i*34)+'px'; el.style.top=(50+i*30)+'px'; i++; focus(id); }); }
+  function isOpen(id){return !!open[id];}
+  return {open:openApp, close, focus, cascade, isOpen};
 })();
 
-/* timeline */
-(function(){
-  const tl=$('#timeline');
-  JOBS.forEach(j=>{
-    const d=document.createElement('div'); d.className='job';
-    d.dataset.kinds=[...new Set(j.points.map(p=>p[0]))].join(' ');
-    d.innerHTML=`<div class="when">${j.when}</div><h3>${j.role}</h3><div class="org">${j.org}</div>
-      <ul>${j.points.map(p=>`<li data-k="${p[0]}">${p[1]}<span class="tag ${p[0]}">${p[0]==='m'?'lead':'tech'}</span></li>`).join('')}</ul>`;
-    tl.appendChild(d);
+/* ============ DOCK ============ */
+function buildDock(){
+  const d=document.getElementById('dock');
+  DOCK.forEach(item=>{
+    if(item[0]==='sep'){ const s=document.createElement('div'); s.className='dock-sep'; d.appendChild(s); return; }
+    const id=item[0], label=item[1]; const b=document.createElement('div'); b.className='dock-icon'; b.dataset.app=id;
+    let glyph = ({about:">_",exp:"≣",skills:"⚙",ask:"?",files:"▤",contact:"✉",github:"{}",linkedin:"in",cv:"↓"})[id]||"●";
+    b.innerHTML=`<span class="run"></span>${glyph}<span class="tip">${label}</span>`;
+    b.addEventListener('click',()=>{
+      if(id==='github'){window.open(PROFILE.github,'_blank');return;}
+      if(id==='linkedin'){window.open(PROFILE.linkedin,'_blank');return;}
+      if(id==='cv'){dl();return;}
+      WM.open(id);
+    });
+    d.appendChild(b);
   });
-})();
+}
+function updateDock(){ document.querySelectorAll('.dock-icon').forEach(b=>{ const id=b.dataset.app; b.classList.toggle('active', WM.isOpen(id)); }); }
+function dl(){ const a=document.createElement('a'); a.href='Alex_Kotliar_CV.pdf'; a.download='Alex_Kotliar_CV.pdf'; document.body.appendChild(a); a.click(); a.remove(); }
 
-/* skills */
-(function(){
-  const g=$('#skillsGrid');
-  SKILLS.forEach(s=>{
-    const c=document.createElement('div'); c.className='skill-card'; c.dataset.k=s.k;
-    let inner=`<h4><span class="ic" style="background:${s.color}"></span>${s.cat}</h4>`;
-    if(s.bars){ inner+=s.bars.map(b=>`<div class="bar"><div class="lbl"><span>${b[0]}</span><span>${b[1]}%</span></div><div class="track"><div class="fill" data-w="${b[1]}" style="background:${s.color}"></div></div></div>`).join(''); }
-    if(s.pills){ inner+=`<div class="pillset">${s.pills.map(p=>`<span class="pill">${p}</span>`).join('')}</div>`; }
-    c.innerHTML=inner; g.appendChild(c);
-  });
-})();
+/* ============ ask.sh ============ */
+function initAsk(root){
+  const log=root.querySelector('#askLog'), form=root.querySelector('#askForm'), input=root.querySelector('#askInput'), sg=root.querySelector('#askSg');
+  SUGGEST.forEach(s=>{ const b=document.createElement('button'); b.type='button'; b.className='sg'; b.textContent=s; b.onclick=()=>ask(s); sg.appendChild(b); });
+  function answer(q){ const t=q.toLowerCase(); let best=null,sc=0;
+    KB.forEach(it=>{let s=0;it.keys.forEach(k=>{if(t.includes(k))s+=k.length;});if(s>sc){sc=s;best=it;}});
+    return (best&&sc>0)?best.a:"Good question — try asking about experience, leadership, AI work, tech stack, education, or contact. Or grab the <a href='Alex_Kotliar_CV.pdf' download>PDF CV</a>."; }
+  function ask(q){ const row=document.createElement('div'); row.className='ask-row';
+    row.innerHTML=`<div class="ask-q"><span class="pr">❯</span> ${esc(q)}</div><div class="ask-a"></div>`;
+    log.appendChild(row); const a=row.querySelector('.ask-a'); const text=answer(q);
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){a.innerHTML=text;log.scrollTop=log.scrollHeight;return;}
+    let i=0;(function tw(){ if(i<=text.length){ const c=text.slice(0,i);
+        if(((c.match(/</g)||[]).length)===((c.match(/>/g)||[]).length)) a.innerHTML=c;
+        i++; log.scrollTop=log.scrollHeight; setTimeout(tw,8);} else {a.innerHTML=text;log.scrollTop=log.scrollHeight;} })(); }
+  form.addEventListener('submit',e=>{e.preventDefault();const v=input.value.trim();if(!v)return;ask(v);input.value='';});
+  setTimeout(()=>ask("hello"),250);
+}
 
-/* education */
-(function(){
-  $('#eduGrid').innerHTML=EDU.map(e=>`<div class="edu reveal"><div class="yr">${e.yr}</div><h4>${e.t}</h4><p>${e.s}</p></div>`).join('');
-  $('#certs').innerHTML=CERTS.map(c=>`<span class="pill"><b>✓</b> ${c}</span>`).join('');
-})();
+/* ============ CLOCK ============ */
+function tickClock(){ const d=new Date();
+  const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const hh=String(d.getHours()).padStart(2,'0'), mm=String(d.getMinutes()).padStart(2,'0');
+  document.getElementById('clock').textContent=`${days[d.getDay()]} ${hh}:${mm}`;
+}
 
-/* lens toggle */
-(function(){
-  $$('#lens button').forEach(b=>b.addEventListener('click',()=>{
-    $$('#lens button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
-    const lens=b.dataset.lens;
-    $$('.job').forEach(j=>{ j.classList.toggle('dim', lens!=='all' && !j.dataset.kinds.split(' ').includes(lens)); });
-    $$('.job li').forEach(li=>{ li.style.display=(lens==='all'||li.dataset.k===lens)?'':'none'; });
-    $$('.skill-card').forEach(c=>{ c.classList.toggle('dim', lens!=='all' && c.dataset.k!==lens); });
-  }));
-})();
+/* ============ MOBILE FALLBACK ============ */
+function buildMobile(){
+  const w=document.getElementById('mwrap');
+  const chips=`<div class="m-chips"><span class="m-chip"><b>15+</b> yrs software</span><span class="m-chip"><b>4+</b> yrs leading</span><span class="m-chip"><b>80%+</b> automated</span><span class="m-chip">📍 Vancouver, BC</span></div>`;
+  let exp='';
+  JOBS.forEach(j=>{ exp+=`<div class="job"><div class="when">${esc(j.when)}</div><div class="role">${esc(j.role)}</div><div class="org">${esc(j.org)}</div><ul>${j.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>`; });
+  let sk='';
+  SKILLS.forEach(g=>{ sk+=`<div class="grp">▍ ${esc(g.cat)}</div>`; g.bars.forEach(b=>{ sk+=`<div class="skill"><div class="lbl"><span class="n">${esc(b[0])}</span><span class="p">${b[1]}%</span></div><div class="bar"><i style="width:${b[1]}%"></i></div></div>`; }); });
+  Object.keys(STACK).forEach(k=>{ sk+=`<div class="grp">▍ ${esc(k)}</div><div class="pills">${STACK[k].map(p=>`<span class="pill">${esc(p)}</span>`).join("")}</div>`; });
+  let ed='';
+  EDU.forEach(e=>{ ed+=`<div style="font-size:13px;margin:3px 0"><span class="o">${esc(e[0])}</span> · ${esc(e[1])} <span style="color:var(--term-dim)">— ${esc(e[2])}</span></div>`; });
+  ed+=`<div class="pills" style="margin-top:8px">${CERTS.map(c=>`<span class="pill">✓ ${esc(c)}</span>`).join("")}</div>`;
+  w.innerHTML=`
+    <div class="m-term"><div class="m-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="t">alex@vancouver: ~</span></div>
+      <div class="m-body"><span class="pr">$</span> whoami<div class="m-name">Alex Kotliar</div><div class="m-role">Engineering Manager · AI-Native Delivery Leader</div>
+      <div style="color:#e9dde6">${esc(SUMMARY)}</div>${chips}
+      <div class="m-cta"><a class="btn" href="Alex_Kotliar_CV.pdf" download>↓ Download CV</a></div></div></div>
+    <div class="m-term"><div class="m-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="t">experience.log</span></div><div class="m-body">${exp}</div></div>
+    <div class="m-term"><div class="m-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="t">skills.json</span></div><div class="m-body">${sk}</div></div>
+    <div class="m-term"><div class="m-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="t">education</span></div><div class="m-body">${ed}</div></div>
+    <div class="m-term"><div class="m-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="t">contact.sh</span></div><div class="m-body">
+      <div>✉ <a style="color:var(--termgreen)" href="mailto:${PROFILE.email}">${PROFILE.email}</a></div>
+      <div>☎ <a style="color:var(--termgreen)" href="tel:+16476420105">${PROFILE.phone}</a></div>
+      <div>in <a style="color:var(--termgreen)" href="${PROFILE.linkedin}" target="_blank" rel="noopener">/in/alexy-kotliar</a></div>
+      <div>{} <a style="color:var(--termgreen)" href="${PROFILE.github}" target="_blank" rel="noopener">@AlexyKotliar</a></div>
+      <div class="m-cta"><a class="btn" href="Alex_Kotliar_CV.pdf" download>↓ Download full CV (PDF)</a></div>
+    </div></div>`;
+}
 
-/* reveal on scroll + animate bars */
-(function(){
-  const io=new IntersectionObserver(es=>{
-    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in');
-      e.target.querySelectorAll && e.target.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%');
-      io.unobserve(e.target); } });
-  },{threshold:.18});
-  $$('.job,.reveal,.skill-card').forEach(n=>io.observe(n));
-  // skills cards also need their bars animated
-  const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%');io2.unobserve(e.target);}});},{threshold:.25});
-  $$('.skill-card').forEach(n=>io2.observe(n));
-})();
-
-/* ask-my-cv */
-(function(){
-  const log=$('#askLog'), form=$('#askForm'), input=$('#askInput'), sg=$('#suggest');
-  SUGGESTIONS.forEach(s=>{ const b=document.createElement('button'); b.type='button'; b.className='sg'; b.textContent=s; b.onclick=()=>ask(s); sg.appendChild(b); });
-  function answer(q){
-    const t=q.toLowerCase(); let best=null,score=0;
-    KB.forEach(item=>{ let s=0; item.keys.forEach(k=>{ if(t.includes(k)) s+=k.length; }); if(s>score){score=s;best=item;} });
-    if(best&&score>0) return best.a;
-    return "Good question — I don't have a canned answer for that, but try asking about Alex's experience, leadership, AI work, technical stack, education, or contact details. Or grab the full <a href='Alex_Kotliar_CV.pdf' download>PDF CV</a>.";
-  }
-  function ask(q){
-    const row=document.createElement('div'); row.className='ask-row';
-    row.innerHTML=`<div class="ask-q"><span class="prompt">❯</span> ${q.replace(/</g,'&lt;')}</div><div class="ask-a"></div>`;
-    log.appendChild(row); const a=row.querySelector('.ask-a');
-    const text=answer(q);
-    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){ a.innerHTML=text; log.scrollTop=log.scrollHeight; return; }
-    let i=0; (function tw(){ // typewriter that respects HTML tags
-      if(i<=text.length){ let chunk=text.slice(0,i);
-        const open=(chunk.match(/</g)||[]).length, close=(chunk.match(/>/g)||[]).length;
-        if(open===close){ a.innerHTML=chunk; } i++; log.scrollTop=log.scrollHeight; setTimeout(tw,9);
-      } else { a.innerHTML=text; log.scrollTop=log.scrollHeight; }
-    })();
-  }
-  form.addEventListener('submit',e=>{ e.preventDefault(); const v=input.value.trim(); if(!v)return; ask(v); input.value=''; });
-  setTimeout(()=>ask("hello"),300);
-})();
+/* ============ BOOT ============ */
+function isMobile(){ return window.matchMedia('(max-width:820px), (pointer:coarse)').matches; }
+buildMobile();
+if(!isMobile()){
+  buildDock(); tickClock(); setInterval(tickClock,15000);
+  WM.open('about'); WM.open('exp'); WM.open('ask');
+  const hint=document.getElementById('hint');
+  setTimeout(()=>hint.classList.add('show'),1200);
+  setTimeout(()=>hint.classList.remove('show'),7000);
+}
 </script>
 </body>
 </html>
